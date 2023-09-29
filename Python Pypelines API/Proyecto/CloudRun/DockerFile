@@ -1,0 +1,23 @@
+# Use the official Python image as the base image
+FROM python:3.9-slim
+
+# Set the working directory
+WORKDIR /app
+
+# Install dependencies
+RUN pip install Flask gunicorn
+RUN pip install numpy
+RUN pip install pandas
+RUN pip install google-cloud
+RUN pip install google-cloud.storage
+RUN pip install google-cloud-bigquery
+RUN pip install google-cloud-bigquery-storage
+
+# Copy the Flask app code into the container
+COPY . .
+
+# Expose the port the app runs on
+EXPOSE 8080
+
+# Define the command to run the application
+CMD ["python", "app.py"]
